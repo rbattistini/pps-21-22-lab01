@@ -31,7 +31,14 @@ class SimpleBankAccountTest {
     }
 
     @Test
-    void testWrongDeposit() {
+    void testNegativeDeposit() {
+        bankAccount.deposit(accountHolder.getId(), 100);
+        bankAccount.deposit(accountHolder.getId(), -50);
+        assertEquals(100, bankAccount.getBalance());
+    }
+
+    @Test
+    void testWrongIdDeposit() {
         bankAccount.deposit(accountHolder.getId(), 100);
         bankAccount.deposit(2, 50);
         assertEquals(100, bankAccount.getBalance());
@@ -45,9 +52,23 @@ class SimpleBankAccountTest {
     }
 
     @Test
-    void testWrongWithdraw() {
+    void testWrongIdWithdraw() {
         bankAccount.deposit(accountHolder.getId(), 100);
         bankAccount.withdraw(2, 70);
+        assertEquals(100, bankAccount.getBalance());
+    }
+
+    @Test
+    void testNegativeWithdraw() {
+        bankAccount.deposit(accountHolder.getId(), 100);
+        bankAccount.withdraw(accountHolder.getId(), -50);
+        assertEquals(100, bankAccount.getBalance());
+    }
+
+    @Test
+    void testDisallowedWithdraw() {
+        bankAccount.deposit(accountHolder.getId(), 100);
+        bankAccount.withdraw(2, 120);
         assertEquals(100, bankAccount.getBalance());
     }
 }

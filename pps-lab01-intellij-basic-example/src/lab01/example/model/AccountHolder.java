@@ -2,7 +2,7 @@ package lab01.example.model;
 
 /**
  * This class represents the account holder concept.
- * That is: a person that can subscribe a bank account.
+ * That is: a person that can subscribe to a bank account.
  *
  * Each account holder has a name, a surname and an ID (unique in the bank system)
  */

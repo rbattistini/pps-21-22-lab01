@@ -6,7 +6,7 @@ package lab01.example.model;
 public interface BankAccount {
 
     /**
-     * Allows to know who is the holder of this bank account
+     * Allows knowing who is the holder of this bank account
      * @return the AccountHolder instance related to this bank account.
      */
     AccountHolder getHolder();
@@ -18,8 +18,10 @@ public interface BankAccount {
     double getBalance();
 
     /**
-     * Allows the deposit of an amount on the account, if the given userID corresponds to the register holder ID
-     * of the bank account. This ID acts like an "identification token" .
+     * Allows the deposit of an amount on the account if the given userID
+     * corresponds to the register holder ID of the bank account.
+     * This ID acts like an "identification token".
+     * The amount must be non-negative.
      *
      * @param userID the id of the user that wants do the deposit
      * @param amount the amount of the deposit
@@ -27,11 +29,13 @@ public interface BankAccount {
     void deposit(int userID, double amount);
 
     /**
-     * Allows the withdrawal of an amount from the account, if the given userID corresponds to the register holder ID
-     * of the bank account. This ID acts like an "identification token" .
+     * Allows the withdrawal of an amount from the account if the given userID
+     * corresponds to the register holder ID of the bank account.
+     * This ID acts like an "identification token".
+     * The amount must be non-negative.
      *
      * @param userID the id of the user that wants do the withdrawal
-     * @param amount the amount of the withdrawal
+     * @param amount the amount of withdrawal
      */
     void withdraw(int userID, double amount);
 }

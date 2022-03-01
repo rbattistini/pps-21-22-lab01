@@ -1,9 +1,10 @@
 package lab01.example.model;
 
 /**
- * This class represent a particular instance of a BankAccount.
- * In particular, a Simple Bank Account allows always the deposit
- * while the withdrawal is allowed only if the balance greater or equal the withdrawal amount
+ * This class represents a particular instance of a BankAccount.
+ * In particular, a Simple Bank Account always allows the deposit
+ * while the withdrawal is allowed only if the balance greater or
+ * equal the withdrawal amount
  */
 public class SimpleBankAccount implements BankAccount {
 
@@ -26,14 +27,14 @@ public class SimpleBankAccount implements BankAccount {
 
     @Override
     public void deposit(final int userID, final double amount) {
-        if (checkUser(userID)) {
+        if (checkUser(userID) && amount >= 0) {
             this.balance += amount;
         }
     }
 
     @Override
     public void withdraw(final int userID, final double amount) {
-        if (checkUser(userID) && isWithdrawAllowed(amount)) {
+        if (checkUser(userID) && amount >= 0 && isWithdrawAllowed(amount)) {
             this.balance -= amount;
         }
     }
