@@ -1,54 +1,18 @@
 package lab01.example.model;
 
 /**
- * This class represents a particular instance of a BankAccount.
- * In particular, a Simple Bank Account always allows the deposit
- * while the withdrawal is allowed only if the balance greater or
- * equal the withdrawal amount
+ * This class represents a particular instance of a BankAccount without
+ * a fee associated to each withdrawal.
  */
-public class SimpleBankAccount implements BankAccount {
-
-    private double balance;
-    private final AccountHolder holder;
+public class SimpleBankAccount extends AbstractSimpleBankAccount {
 
     public SimpleBankAccount(final AccountHolder holder, final double balance) {
-        this.holder = holder;
-        this.balance = balance;
-    }
-    @Override
-    public AccountHolder getHolder(){
-        return this.holder;
+        super(balance, holder);
     }
 
     @Override
-    public double getBalance() {
-        return this.balance;
+    protected double getFee() {
+        return 0.0;
     }
 
-    @Override
-    public void deposit(final int userID, final double amount) {
-        if (checkUser(userID) && checkNonNegativeAmount(amount)) {
-            this.balance += amount;
-        }
-    }
-
-    @Override
-    public void withdraw(final int userID, final double amount) {
-        if (checkUser(userID) && checkNonNegativeAmount(amount) &&
-                isWithdrawAllowed(amount)) {
-            this.balance -= amount;
-        }
-    }
-
-    private boolean checkNonNegativeAmount(final double amount) {
-        return amount >= 0;
-    }
-
-    private boolean isWithdrawAllowed(final double amount){
-        return this.balance >= amount;
-    }
-
-    private boolean checkUser(final int id) {
-        return this.holder.getId() == id;
-    }
 }
