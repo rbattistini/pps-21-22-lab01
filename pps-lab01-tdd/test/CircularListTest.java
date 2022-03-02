@@ -1,6 +1,4 @@
-import lab01.tdd.CircularList;
-import lab01.tdd.CircularListImpl;
-import lab01.tdd.SelectStrategy;
+import lab01.tdd.*;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -107,7 +105,8 @@ public class CircularListTest {
         }
 
         int givenNumber = 2;
-        SelectStrategy multipleOfStrategy = (x) -> x % givenNumber == 0;
+        AbstractStrategyFactory strategyFactory = new MultipleOfStrategyFactory();
+        SelectStrategy multipleOfStrategy = strategyFactory.createStrategy(givenNumber);
 
         Optional<Integer> result = circularList.next(multipleOfStrategy);
         assertTrue(result.isPresent());
@@ -121,7 +120,8 @@ public class CircularListTest {
         }
 
         int givenNumber = 0;
-        SelectStrategy equalsStrategy = (x) -> x == givenNumber;
+        AbstractStrategyFactory strategyFactory = new EqualsStrategyFactory();
+        SelectStrategy equalsStrategy = strategyFactory.createStrategy(givenNumber);
 
         Optional<Integer> result = circularList.next(equalsStrategy);
         assertTrue(result.isPresent());
