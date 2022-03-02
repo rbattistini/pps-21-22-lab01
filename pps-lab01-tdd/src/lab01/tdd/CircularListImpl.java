@@ -58,13 +58,9 @@ public class CircularListImpl implements CircularList {
         if(list.isEmpty())
             return Optional.empty();
 
-        for(int i : list) {
-            if(strategy.apply(i)) {
-                currentIdx = list.indexOf(i);
-                return Optional.of(i);
-            }
-        }
-        return Optional.empty();
+        Optional<Integer> result = list.stream().filter(strategy::apply).findFirst();
+        result.ifPresent(integer -> currentIdx = list.indexOf(integer));
+        return result;
     }
 
     private int nextIndex(int idx) {
