@@ -1,5 +1,6 @@
 import lab01.tdd.CircularList;
 import lab01.tdd.CircularListImpl;
+import lab01.tdd.SelectStrategy;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -86,9 +87,44 @@ public class CircularListTest {
         assertEquals(tmpResult.get(), 1);
     }
 
-    @Disabled
     @Test
-    void testNextWithStrategy() {
+    void testNextWithEvenStrategy() {
+        for(int i : List.of(1,2,3)) {
+            circularList.add(i);
+        }
 
+        SelectStrategy evenStrategy = (x) -> x % 2 == 0;
+
+        Optional<Integer> result = circularList.next(evenStrategy);
+        assertTrue(result.isPresent());
+        assertEquals(result.get(), 2);
+    }
+
+    @Test
+    void testNextWithMultipleOfStrategy() {
+        for(int i : List.of(1,3,4)) {
+            circularList.add(i);
+        }
+
+        int givenNumber = 2;
+        SelectStrategy multipleOfStrategy = (x) -> x % givenNumber == 0;
+
+        Optional<Integer> result = circularList.next(multipleOfStrategy);
+        assertTrue(result.isPresent());
+        assertEquals(result.get(), 4);
+    }
+
+    @Test
+    void testNextWithEqualsStrategy() {
+        for(int i : List.of(1,1,0)) {
+            circularList.add(i);
+        }
+
+        int givenNumber = 0;
+        SelectStrategy equalsStrategy = (x) -> x == givenNumber;
+
+        Optional<Integer> result = circularList.next(equalsStrategy);
+        assertTrue(result.isPresent());
+        assertEquals(result.get(), 0);
     }
 }
