@@ -36,7 +36,7 @@ public class SimpleBankAccountWithAtmTest extends BasicSimpleBankAccountTest {
         final double depositedAmount = 100.0;
         final double withdrawnAmount = 99.1;
         bankAccount.deposit(accountHolder.getId(), depositedAmount);
-        bankAccount.withdraw(INVALID_USER_ID, withdrawnAmount + FEE);
+        bankAccount.withdraw(INVALID_USER_ID, withdrawnAmount);
         Assertions.assertEquals(depositedAmount, bankAccount.getBalance());
     }
 }
