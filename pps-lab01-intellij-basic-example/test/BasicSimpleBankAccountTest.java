@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test;
 
 public abstract class BasicSimpleBankAccountTest {
 
-    protected static final double EMPTY_BALANCE = 0.0;
+    protected static final int EMPTY_BALANCE = 0;
     protected static final int INVALID_USER_ID = 2;
-    private static final double DUMMY_DEPOSIT = 100.0;
-    private static final double DUMMY_WITHDRAW = 70.0;
+    private static final int DUMMY_DEPOSIT = 100;
+    private static final int DUMMY_WITHDRAW = 70;
     protected AccountHolder accountHolder;
     protected BankAccount bankAccount;
 
