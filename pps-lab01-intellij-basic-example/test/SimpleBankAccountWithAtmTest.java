@@ -12,20 +12,20 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  */
 public class SimpleBankAccountWithAtmTest extends BasicSimpleBankAccountTest {
 
-    private static final double FEE = 1.0;
+    private static final int FEE = 1;
 
     @Override
     @BeforeEach
     public void beforeEach(){
-        int userId = 1;
+        final int userId = 1;
         accountHolder = new AccountHolder("Mario", "Rossi", userId);
         bankAccount = new SimpleBankAccountWithAtm(accountHolder, EMPTY_BALANCE);
     }
 
     @Test
     void testWithdrawWithAtm() {
-        double depositedAmount = 100.0;
-        double withdrawnAmount = 80.0;
+        final double depositedAmount = 100;
+        final double withdrawnAmount = 80;
         bankAccount.deposit(accountHolder.getId(), depositedAmount);
         bankAccount.withdraw(accountHolder.getId(), withdrawnAmount);
         assertEquals(depositedAmount - withdrawnAmount - FEE, bankAccount.getBalance());
@@ -33,7 +33,7 @@ public class SimpleBankAccountWithAtmTest extends BasicSimpleBankAccountTest {
 
     @Test
     void testDisallowedWithdrawWithAtm() {
-        final double depositedAmount = 100.0;
+        final int depositedAmount = 100;
         final double withdrawnAmount = 99.1;
         bankAccount.deposit(accountHolder.getId(), depositedAmount);
         bankAccount.withdraw(INVALID_USER_ID, withdrawnAmount);
