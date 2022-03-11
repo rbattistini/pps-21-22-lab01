@@ -12,7 +12,7 @@ public class SimpleBankAccount extends AbstractSimpleBankAccount {
 
     @Override
     protected double getFee() {
-        return 0.0;
+        return 0;
     }
 
 }
