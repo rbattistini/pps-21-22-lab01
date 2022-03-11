@@ -31,9 +31,10 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> next() {
-        if(list.isEmpty())
+        if(list.isEmpty()) {
             return Optional.empty();
-
+        }
+        
         int result = list.get(currentIdx);
         currentIdx = nextIndex(currentIdx);
         return Optional.of(result);
@@ -41,8 +42,9 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> previous() {
-        if(list.isEmpty())
+        if(list.isEmpty()) {
             return Optional.empty();
+        }
 
         currentIdx = previousIndex(currentIdx);
         return Optional.of(list.get(currentIdx));
@@ -55,8 +57,9 @@ public class CircularListImpl implements CircularList {
 
     @Override
     public Optional<Integer> next(SelectStrategy strategy) {
-        if(list.isEmpty())
+        if(list.isEmpty()) {
             return Optional.empty();
+        }
 
         Optional<Integer> result = list.stream().filter(strategy::apply).findFirst();
         result.ifPresent(integer -> currentIdx = list.indexOf(integer));
